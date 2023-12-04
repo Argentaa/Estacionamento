@@ -1,17 +1,35 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
 
-import model.bean.Motorista;
 import model.dao.MotoristaDAO;
+import model.bean.Motorista;
 
-public class JFCadastrarMotorista extends javax.swing.JFrame {
+public class JFAtualizarMotorista extends javax.swing.JFrame {
 
-    public JFCadastrarMotorista() {
+    private static int idMotorista;
+
+    public JFAtualizarMotorista(int idMotorista) {
         initComponents();
+
+        MotoristaDAO mdao = new MotoristaDAO();
+        Motorista m = mdao.read(idMotorista);
+
+        lblIdMotorista.setText(String.valueOf(m.getIdMotorista()));
+        jTFNome.setText(m.getNome());
+        jTFRg.setText(String.valueOf(m.getRg()));
+        jTFCpf.setText(String.valueOf(m.getCpf()));
+        jTFCelular.setText(String.valueOf(m.getCelular()));
+        jTFEmail.setText(String.valueOf(m.getEmail()));
+        jTFSenha.setText(String.valueOf(m.getSenha()));
+
+        if (m.isHomem()) {
+            jRBMasc.setSelected(true);
+        } else if (m.isHomem() == false) {
+            jRBFem.setSelected(true);
+        }
     }
 
     /**
@@ -25,38 +43,39 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
 
         BGGenero = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblIdMotorista = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTFNome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jRBMasc = new javax.swing.JRadioButton();
         jRBFem = new javax.swing.JRadioButton();
-        jLabel5 = new javax.swing.JLabel();
-        jTFCelular = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTFRg = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTFCpf = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jTFEmail = new javax.swing.JTextField();
+        jTFCelular = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jTFEmail = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
         jTFSenha = new javax.swing.JTextField();
-        jBtnCancelar = new javax.swing.JButton();
-        jBtnSalvar = new javax.swing.JButton();
         jBtnLimpar = new javax.swing.JButton();
+        jBtnSalvar = new javax.swing.JButton();
+        jBtnCancelar = new javax.swing.JButton();
+        jTFNome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastrar Motorista");
+        setTitle("Atualizar Motorista");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("Cadastrar Motorista");
+        jLabel1.setText("Atualizar Motorista");
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jLabel5.setText("ID da vaga:");
+
+        lblIdMotorista.setText("id");
 
         jLabel2.setText("Nome completo:");
-
-        jTFNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFNomeActionPerformed(evt);
-            }
-        });
 
         jLabel4.setText("Gênero:");
 
@@ -77,15 +96,7 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("RG (apenas números):");
-
-        jTFCelular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFCelularActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("CPF (apenas números):");
+        jLabel6.setText("RG (apenas números):");
 
         jTFRg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +104,7 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("DDD + Celular (apenas números):");
+        jLabel7.setText("CPF (apenas números):");
 
         jTFCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +112,15 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Email:");
+        jLabel8.setText("DDD + Celular (apenas números):");
+
+        jTFCelular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTFCelularActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Email:");
 
         jTFEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,25 +128,11 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText("Senha:");
+        jLabel10.setText("Senha:");
 
         jTFSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFSenhaActionPerformed(evt);
-            }
-        });
-
-        jBtnCancelar.setText("Cancelar");
-        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnCancelarActionPerformed(evt);
-            }
-        });
-
-        jBtnSalvar.setText("Salvar");
-        jBtnSalvar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtnSalvarActionPerformed(evt);
             }
         });
 
@@ -138,104 +143,109 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
             }
         });
 
+        jBtnSalvar.setText("Salvar");
+        jBtnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSalvarActionPerformed(evt);
+            }
+        });
+
+        jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(248, 248, 248))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 125, Short.MAX_VALUE)
+                        .addComponent(jBtnSalvar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBtnLimpar)
+                        .addGap(18, 18, 18)
+                        .addComponent(jBtnCancelar)
+                        .addGap(52, 52, 52))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRBFem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRBMasc)
-                        .addGap(104, 104, 104))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTFRg)
-                            .addComponent(jTFCpf, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTFCelular)
-                            .addComponent(jTFEmail)
-                            .addComponent(jTFSenha))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTFNome)
-                        .addGap(16, 16, 16))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jBtnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRBFem))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTFSenha, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTFEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTFCelular, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTFCpf, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTFRg, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblIdMotorista))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTFNome, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addContainerGap()
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblIdMotorista))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTFNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
                     .addComponent(jRBMasc)
-                    .addComponent(jRBFem)
-                    .addComponent(jLabel4))
+                    .addComponent(jRBFem))
                 .addGap(18, 18, 18)
-                .addComponent(jLabel5)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTFRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTFCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTFCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTFCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTFEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTFCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTFEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTFSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtnLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jBtnCancelar)
+                    .addComponent(jBtnSalvar)
+                    .addComponent(jBtnLimpar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTFNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFNomeActionPerformed
 
     private void jRBMascActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBMascActionPerformed
         // TODO add your handling code here:
@@ -244,49 +254,6 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
     private void jRBFemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRBFemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRBFemActionPerformed
-
-    private void jTFCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCelularActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFCelularActionPerformed
-
-    private void jTFRgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRgActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFRgActionPerformed
-
-    private void jTFCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFCpfActionPerformed
-
-    private void jTFEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFEmailActionPerformed
-
-    private void jTFSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTFSenhaActionPerformed
-
-    private void jBtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarActionPerformed
-        // TODO add your handling code here:
-        Motorista m = new Motorista();
-        MotoristaDAO dao = new MotoristaDAO();
-
-        m.setNome(jTFNome.getText());
-
-        if (jRBMasc.isSelected()) {
-            m.setHomem(true);
-        } else if (jRBFem.isSelected()) {
-            m.setHomem(false);
-        }
-
-        m.setRg(jTFRg.getText());
-        m.setCpf(jTFCpf.getText());
-        m.setCelular(jTFCelular.getText());
-        m.setEmail(jTFEmail.getText());
-        m.setSenha(jTFSenha.getText());
-
-        dao.create(m);
-
-    }//GEN-LAST:event_jBtnSalvarActionPerformed
 
     private void jBtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimparActionPerformed
         // TODO add your handling code here:
@@ -299,6 +266,48 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
         BGGenero.clearSelection();
 
     }//GEN-LAST:event_jBtnLimparActionPerformed
+
+    private void jBtnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarActionPerformed
+        // TODO add your handling code here:
+        Motorista m = new Motorista();
+        MotoristaDAO dao = new MotoristaDAO();
+
+        m.setIdMotorista(Integer.parseInt(lblIdMotorista.getText()));
+        m.setNome(jTFNome.getText());
+        m.setRg(jTFRg.getText());
+        m.setCpf(jTFCpf.getText());
+        m.setCelular(jTFCelular.getText());
+        m.setEmail(jTFEmail.getText());
+        m.setSenha(jTFSenha.getText());
+
+        if (jRBMasc.isSelected()) {
+            m.setHomem(true);
+        } else if (jRBFem.isSelected()) {
+            m.setHomem(false);
+        }
+
+        dao.update(m);
+    }//GEN-LAST:event_jBtnSalvarActionPerformed
+
+    private void jTFSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFSenhaActionPerformed
+
+    private void jTFEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFEmailActionPerformed
+
+    private void jTFCelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCelularActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCelularActionPerformed
+
+    private void jTFCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFCpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFCpfActionPerformed
+
+    private void jTFRgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFRgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTFRgActionPerformed
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
         // TODO add your handling code here:
@@ -322,20 +331,21 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFCadastrarMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFAtualizarMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFCadastrarMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFAtualizarMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFCadastrarMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFAtualizarMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFCadastrarMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFAtualizarMotorista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFCadastrarMotorista().setVisible(true);
+                JFAtualizarMotorista frame = new JFAtualizarMotorista(idMotorista);
+                frame.setVisible(true);
             }
         });
     }
@@ -346,6 +356,7 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
     private javax.swing.JButton jBtnLimpar;
     private javax.swing.JButton jBtnSalvar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -361,5 +372,6 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
     private javax.swing.JTextField jTFNome;
     private javax.swing.JTextField jTFRg;
     private javax.swing.JTextField jTFSenha;
+    private javax.swing.JLabel lblIdMotorista;
     // End of variables declaration//GEN-END:variables
 }

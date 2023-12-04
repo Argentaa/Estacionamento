@@ -8,15 +8,8 @@ import model.bean.Vaga;
 import model.dao.VagaDAO;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author eduar
- */
 public class JFlistarVagas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form JFlistarVagas
-     */
     public JFlistarVagas() {
         initComponents();
     }
